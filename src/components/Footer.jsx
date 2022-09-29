@@ -7,13 +7,13 @@ export const Footer = () => {
   return (
     <AppBar position='static' color='warning' sx={{ height: '8vh', justifyContent: 'center' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <IconButton>
-          <img src={react_logo} alt='React logo' width='50px' />
+        <IconButton href='https://es.reactjs.org/'>
+          <img src={react_logo} alt='React logo' width='80px' />
         </IconButton>
-        <Typography>
-          Power By <IconButton>PokeApi</IconButton>
+        <Typography variant='body2'>
+          Power By <IconButton href='https://pokeapi.co/'>PokeApi</IconButton>
         </Typography>
-        <IconButton href=''>
+        <IconButton href='https://github.com/escontrerass/poke_info'>
           <GitHub />{' '}
         </IconButton>
       </Toolbar>
