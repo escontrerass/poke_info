@@ -1,7 +1,7 @@
 import React from 'react'
 import { Main } from '../containers/Main'
 
-export const Error404 = () => {
+export const Favorites = () => {
   return (
     <Main>
       <h1>Hola</h1>

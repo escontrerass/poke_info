@@ -3,10 +3,10 @@ import React from 'react'
 import { useGetGlobalData } from '../hooks/useApi'
 
 export const Search = () => {
-  const { data, loading } = useGetGlobalData('pokemon')
+  const { data, loading } = useGetGlobalData('pokemon/', 251)
 
   return (
-    <Stack sx={{ width: 300, margin: 'auto', paddingY: 2 }}>
+    <Stack sx={{ width: 300, margin: 'auto' }}>
       <Autocomplete
         id='pokemon_name'
         getOptionLabel={data => data.name}
@@ -14,7 +14,7 @@ export const Search = () => {
         loading={loading}
         sx={{ width: 300 }}
         isOptionEqualToValue={(option, value) => option.name === value.name}
-        noOptionsText={'No se encontró se pokemon...'}
+        noOptionsText={'No se encontró ese pokémon...'}
         renderOption={(props, data) => (
           <Box component='li' {...props} key={data.name}>
             {data.name}
