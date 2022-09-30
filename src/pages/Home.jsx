@@ -10,27 +10,29 @@ export const Home = () => {
 
   return (
     <Main>
-      <Search />
       {loading ? (
         <Box display='flex' justifyContent='center' mt='10vh'>
           <CircularProgress color='warning' size='325px' />
         </Box>
       ) : (
-        <Grid
-          container
-          py='32px'
-          px={{ md: '80px' }}
-          rowSpacing={4}
-          columnGap={{ sm: 2, md: 4, lg: 8 }}
-          sx={{ justifyContent: 'center', alignItems: 'center' }}
-        >
-          {data.length > 0 &&
-            data.map(({ value }) => (
-              <Grid item xs={11} sm={5} md={3.6} lg={2.5} key={value.id}>
-                <PokeCard {...value} />
-              </Grid>
-            ))}
-        </Grid>
+        <>
+          <Search />
+          <Grid
+            container
+            py='32px'
+            px={{ md: '80px' }}
+            rowSpacing={4}
+            columnGap={{ sm: 2, md: 4, lg: 8 }}
+            sx={{ justifyContent: 'center', alignItems: 'center' }}
+          >
+            {data.length > 0 &&
+              data.map(({ value }) => (
+                <Grid item xs={11} sm={5} md={3.6} lg={2.5} key={value.id}>
+                  <PokeCard {...value} />
+                </Grid>
+              ))}
+          </Grid>
+        </>
       )}
     </Main>
   )
