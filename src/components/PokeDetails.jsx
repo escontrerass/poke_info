@@ -12,8 +12,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  IconButton,
 } from '@mui/material'
-import { backgroundColors } from '../utils/backgroundColors'
 import {
   Stream,
   Height,
@@ -26,12 +26,16 @@ import {
   Bolt,
   AddReaction,
   AutoAwesome,
+  Star,
 } from '@mui/icons-material'
+import { useLocalStorage } from '../hooks/useLocalStorage'
+import { backgroundColors } from '../utils/backgroundColors'
 
 export const PokeDetails = props => {
   const { id, name, height, weight, sprites, types, base_experience, stats, abilities } = props
+  const [listFavorite, setListFavorite] = useLocalStorage()
   const background = types && backgroundColors(types)
-  console.log(props)
+  const isFavorite = listFavorite.includes(id)
 
   return (
     <>
@@ -41,11 +45,21 @@ export const PokeDetails = props => {
         >
           <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
             <Box p={2} sx={{ backgroundColor: background[0].backgroundColor.light }}>
-              <Box display='inline-block' p={2}>
-                <Typography variant='h4'>#{id}</Typography>
-                <Typography variant='h3' fontWeight='bold'>
-                  {capitalize(name)}
-                </Typography>
+              <Box display='flex' alignItems='center' justifyContent='space-between' p={2}>
+                <Box>
+                  <Typography variant='h4'>#{id}</Typography>
+                  <Typography variant='h3' fontWeight='bold'>
+                    {capitalize(name)}
+                  </Typography>
+                </Box>
+                <IconButton
+                  p={1}
+                  sx={{ backgroundColor: '#484848' }}
+                  className='scale-125 hover:transition hover:duration-300 hover:ease-in hover:delay-150 hover:-translate-y-1 hover:scale-150'
+                  onClick={setListFavorite(id)}
+                >
+                  {isFavorite ? <Star color='warning' /> : <Star />}
+                </IconButton>
               </Box>
               <Box borderRadius='100%' boxShadow={4} sx={{ backgroundColor: background[0].backgroundColor.medium }}>
                 <CardMedia
@@ -64,7 +78,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Altura:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {height}
                     </Typography>
                   </ListItemText>
@@ -75,7 +89,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Peso:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {weight}
                     </Typography>
                   </ListItemText>
@@ -87,7 +101,7 @@ export const PokeDetails = props => {
                   <ListItemText>
                     Tipos:{' '}
                     {background.map((type, index) => (
-                      <Typography color={type.backgroundColor.medium} key={index} component='spam' fontWeight='bold'>
+                      <Typography color={type.backgroundColor.medium} key={index} component='span' fontWeight='bold'>
                         {`${capitalize(type.type.name)}   `}
                       </Typography>
                     ))}
@@ -99,7 +113,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Experiencia base:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {base_experience}
                     </Typography>
                   </ListItemText>
@@ -114,7 +128,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Vida:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {stats[0].base_stat}
                     </Typography>
                   </ListItemText>
@@ -125,7 +139,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Ataque:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {stats[1].base_stat}
                     </Typography>
                   </ListItemText>
@@ -136,7 +150,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Defensa:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {stats[2].base_stat}
                     </Typography>
                   </ListItemText>
@@ -147,7 +161,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Ataque especial:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {stats[3].base_stat}
                     </Typography>
                   </ListItemText>
@@ -158,7 +172,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Defensa especial:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {stats[4].base_stat}
                     </Typography>
                   </ListItemText>
@@ -169,7 +183,7 @@ export const PokeDetails = props => {
                   </ListItemIcon>
                   <ListItemText>
                     Velocidad:{' '}
-                    <Typography component='spam' fontWeight='bold'>
+                    <Typography component='span' fontWeight='bold'>
                       {stats[5].base_stat}
                     </Typography>
                   </ListItemText>
@@ -184,7 +198,7 @@ export const PokeDetails = props => {
                       <AutoAwesome />{' '}
                     </ListItemIcon>
                     <ListItemText>
-                      <Typography component='spam' fontWeight='bold'>
+                      <Typography component='span' fontWeight='bold'>
                         {capitalize(ability.ability.name)}
                       </Typography>
                     </ListItemText>

@@ -1,9 +1,9 @@
-import { AppBar, IconButton, Toolbar, Typography, useTheme } from '@mui/material'
-import CatchinPokemonIcon from '@mui/icons-material/CatchingPokemon'
-import { DarkMode, Brightness7 } from '@mui/icons-material'
+import { AppBar, Box, IconButton, Toolbar, Typography, useTheme } from '@mui/material'
+import { DarkMode, Brightness7, Star } from '@mui/icons-material'
 import { useContext } from 'react'
 import { ColorModeContext } from '../context/ThemeContext'
 import { useNavigate } from 'react-router-dom'
+import pokeInfo from '../assets/title.png'
 
 export const Header = () => {
   const navigate = useNavigate()
@@ -15,24 +15,26 @@ export const Header = () => {
   }
 
   return (
-    <AppBar position='fixed' color='warning' sx={{ height: '10vh', justifyContent: 'center' }}>
+    <AppBar position='fixed' color='primary' sx={{ height: '10vh', justifyContent: 'center' }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
-        <IconButton size='large' edge='start' color='inherit' aria-label='logo' onClick={() => handleNavigate('')}>
-          <CatchinPokemonIcon />
-          <Typography variant='h6' component='div' pl='8px'>
-            PokeInfo
-          </Typography>
+        <IconButton aria-label='logo' onClick={() => handleNavigate('')}>
+          <Box width={{ xs: '120px', sm: '160px', md: '200px' }}>
+            <img src={pokeInfo} alt='Logo de PokeInfo' />
+          </Box>
         </IconButton>
-        <IconButton onClick={() => handleNavigate('/favorites')}>
-          <Typography>FAV</Typography>
-        </IconButton>
-        <IconButton color='inherit' onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === 'light' ? (
-            <DarkMode color='primary' fontSize='large' />
-          ) : (
-            <Brightness7 color='warning' fontSize='large' />
-          )}
-        </IconButton>
+        <Box>
+          <IconButton size='large' sx={{ gap: '8px' }} onClick={() => handleNavigate('favorites')}>
+            <Star color='warning' />
+            <Typography variant='h5'>Favoritos</Typography>
+          </IconButton>
+          <IconButton color='inherit' onClick={colorMode.toggleColorMode}>
+            {theme.palette.mode === 'light' ? (
+              <DarkMode color='#000' fontSize='large' />
+            ) : (
+              <Brightness7 color='warning' fontSize='large' />
+            )}
+          </IconButton>
+        </Box>
       </Toolbar>
     </AppBar>
   )
