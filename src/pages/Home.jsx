@@ -6,14 +6,14 @@ import { Main } from '../containers/Main'
 import { useGetDetailData } from '../hooks/useApi'
 
 export const Home = () => {
-  const { data, loading } = useGetDetailData('pokemon/', 0, 4)
+  const { data, loading } = useGetDetailData('pokemon/', 0, 251)
 
   return (
     <Main>
       <Search />
       {loading ? (
         <Box display='flex' justifyContent='center' mt='10vh'>
-          <CircularProgress color='warning' size='350px' />
+          <CircularProgress color='warning' size='325px' />
         </Box>
       ) : (
         <Grid

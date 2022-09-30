@@ -10,7 +10,7 @@ export function useGetGlobalData(EP) {
 
     const options = {
       method: 'GET',
-      url: `${process.env.REACT_APP_URL_API}${EP}`,
+      url: `${process.env.REACT_APP_POKE_API}${EP}`,
       params: { limit: 251, offset: '0' },
     }
 
@@ -37,7 +37,7 @@ export function useGetDetailData(EP, START = 0, LIMIT = 251) {
     setLoading(true)
     const options = {
       method: 'GET',
-      url: `${process.env.REACT_APP_URL_API}${EP}`,
+      url: `${process.env.REACT_APP_POKE_API}${EP}`,
       params: { limit: `${LIMIT}`, offset: `${START}` },
     }
     async function getData() {
@@ -72,7 +72,7 @@ export function useGetSelectedData(EP) {
 
     const options = {
       method: 'GET',
-      url: `${process.env.REACT_APP_URL_API}${EP}`,
+      url: `${process.env.REACT_APP_POKE_API}${EP}`,
     }
     async function getData() {
       try {

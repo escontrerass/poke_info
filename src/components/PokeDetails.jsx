@@ -13,6 +13,7 @@ import {
   ListItemIcon,
   ListItemText,
   IconButton,
+  Button,
 } from '@mui/material'
 import {
   Stream,
@@ -30,12 +31,14 @@ import {
 } from '@mui/icons-material'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { backgroundColors } from '../utils/backgroundColors'
+import { useNavigate } from 'react-router-dom'
 
 export const PokeDetails = props => {
   const { id, name, height, weight, sprites, types, base_experience, stats, abilities } = props
   const [listFavorite, setListFavorite] = useLocalStorage()
   const background = types && backgroundColors(types)
   const isFavorite = listFavorite.includes(id)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -43,7 +46,12 @@ export const PokeDetails = props => {
         <Container
           sx={{ minHeight: '77vh', display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center' }}
         >
-          <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+          <Card sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, position: 'relative' }}>
+            <Box position='absolute' right='20px' top='15px'>
+              <Button color='primary' variant='contained' onClick={() => navigate(-1)}>
+                Volver a atrás.
+              </Button>
+            </Box>
             <Box p={2} sx={{ backgroundColor: background[0].backgroundColor.light }}>
               <Box display='flex' alignItems='center' justifyContent='space-between' p={2}>
                 <Box>
@@ -52,14 +60,16 @@ export const PokeDetails = props => {
                     {capitalize(name)}
                   </Typography>
                 </Box>
-                <IconButton
-                  p={1}
-                  sx={{ backgroundColor: '#484848' }}
-                  className='scale-125 hover:transition hover:duration-300 hover:ease-in hover:delay-150 hover:-translate-y-1 hover:scale-150'
-                  onClick={setListFavorite(id)}
-                >
-                  {isFavorite ? <Star color='warning' /> : <Star />}
-                </IconButton>
+                <Box mt='10px'>
+                  <IconButton
+                    p={1}
+                    sx={{ backgroundColor: '#484848' }}
+                    className='scale-125 hover:transition hover:duration-300 hover:ease-in hover:delay-150 hover:-translate-y-1 hover:scale-150'
+                    onClick={setListFavorite(id)}
+                  >
+                    {isFavorite ? <Star color='warning' /> : <Star />}
+                  </IconButton>
+                </Box>
               </Box>
               <Box borderRadius='100%' boxShadow={4} sx={{ backgroundColor: background[0].backgroundColor.medium }}>
                 <CardMedia
