@@ -49,12 +49,12 @@ export const Home = () => {
           <Box display='flex' justifyContent='center' gap={5}>
             {pagination.previous && (
               <Button color='primary' variant='contained' size='large' onClick={() => handleClic(pagination.previous)}>
-                Back
+                Atrás
               </Button>
             )}
             {!lastId && (
               <Button color='primary' variant='contained' size='large' onClick={() => handleClic(pagination.next)}>
-                Next
+                Siguiente
               </Button>
             )}
           </Box>
