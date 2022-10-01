@@ -1,4 +1,4 @@
-import { useGetSelectedData } from '../hooks/useApi'
+import { useGetSelectedData } from 'hooks/useApi'
 
 export function Favorite(id) {
   const { data } = useGetSelectedData(`pokemon/${id}`)

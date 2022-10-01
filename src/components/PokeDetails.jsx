@@ -29,8 +29,8 @@ import {
   AutoAwesome,
   Star,
 } from '@mui/icons-material'
-import { useLocalStorage } from '../hooks/useLocalStorage'
-import { backgroundColors } from '../utils/backgroundColors'
+import { useLocalStorage } from 'hooks/useLocalStorage'
+import { backgroundColors } from 'utils/backgroundColors'
 import { useNavigate } from 'react-router-dom'
 
 export const PokeDetails = props => {

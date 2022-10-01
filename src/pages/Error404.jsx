@@ -1,9 +1,9 @@
 import { Box, Container, Button } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Main } from '../containers/Main'
-import error from '../assets/404.png'
-import page from '../assets/notFound.png'
+import { Main } from 'containers/Main'
+import error from 'assets/404.png'
+import page from 'assets/notFound.png'
 
 export const Error404 = () => {
   return (

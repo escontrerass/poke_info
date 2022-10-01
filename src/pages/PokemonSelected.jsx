@@ -1,7 +1,7 @@
 import React from 'react'
-import { Main } from '../containers/Main'
-import { useGetSelectedData } from '../hooks/useApi'
-import { PokeDetails } from '../components/PokeDetails'
+import { Main } from 'containers/Main'
+import { useGetSelectedData } from 'hooks/useApi'
+import { PokeDetails } from 'components/PokeDetails'
 import { useLocation } from 'react-router-dom'
 import { CircularProgress, Box } from '@mui/material'
 

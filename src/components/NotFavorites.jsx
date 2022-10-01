@@ -1,7 +1,7 @@
 import { Box, Container, Button } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import notFavorites from '../assets/sinFavoritos.png'
+import notFavorites from 'assets/sinFavoritos.png'
 
 export const NotFavorites = () => {
   return (

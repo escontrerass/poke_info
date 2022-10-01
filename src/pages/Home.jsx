@@ -1,12 +1,12 @@
 import { CircularProgress, Grid, Box } from '@mui/material'
 import React from 'react'
-import { PokeCard } from '../components/PokeCard'
-import { Search } from '../components/Search'
-import { Main } from '../containers/Main'
-import { useGetDetailData } from '../hooks/useApi'
+import { PokeCard } from 'components/PokeCard'
+import { Search } from 'components/Search'
+import { Main } from 'containers/Main'
+import { useGetDetailData } from 'hooks/useApi'
 
 export const Home = () => {
-  const { data, loading } = useGetDetailData('pokemon/', 0, 251)
+  const { data, loading } = useGetDetailData('pokemon/', 0, 20)
 
   return (
     <Main>

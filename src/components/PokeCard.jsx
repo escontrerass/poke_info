@@ -1,6 +1,6 @@
 import React from 'react'
 import { CardContent, CardMedia, Card, Typography, Box, capitalize } from '@mui/material'
-import { backgroundColors } from '../utils/backgroundColors'
+import { backgroundColors } from 'utils/backgroundColors'
 import { Link } from 'react-router-dom'
 
 export const PokeCard = props => {

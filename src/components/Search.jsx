@@ -1,6 +1,6 @@
 import { Autocomplete, Box, capitalize, CircularProgress, Stack, TextField } from '@mui/material'
 import React from 'react'
-import { useGetGlobalData } from '../hooks/useApi'
+import { useGetGlobalData } from 'hooks/useApi'
 import { useNavigate } from 'react-router-dom'
 
 export const Search = () => {

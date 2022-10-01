@@ -1,7 +1,7 @@
 import { GitHub } from '@mui/icons-material'
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import React from 'react'
-import react_logo from '../assets/react_logo.png'
+import react_logo from 'assets/react_logo.png'
 
 export const Footer = () => {
   return (

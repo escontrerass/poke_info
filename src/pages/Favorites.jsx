@@ -1,10 +1,10 @@
 import React from 'react'
-import { Main } from '../containers/Main'
+import { Main } from 'containers/Main'
 import { CircularProgress, Box, Grid, Button } from '@mui/material'
-import { PokeCard } from '../components/PokeCard'
-import { useLocalStorage } from '../hooks/useLocalStorage'
-import { ListFavorites } from '../utils/fetchFavorite'
-import { NotFavorites } from '../components/NotFavorites'
+import { PokeCard } from 'components/PokeCard'
+import { useLocalStorage } from 'hooks/useLocalStorage'
+import { ListFavorites } from 'utils/fetchFavorite'
+import { NotFavorites } from 'components/NotFavorites'
 import { Link } from 'react-router-dom'
 
 export const Favorites = () => {

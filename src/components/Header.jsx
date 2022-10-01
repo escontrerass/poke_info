@@ -1,9 +1,9 @@
 import { AppBar, Box, IconButton, Toolbar, Typography, useTheme } from '@mui/material'
 import { DarkMode, Brightness7, Star } from '@mui/icons-material'
 import { useContext } from 'react'
-import { ColorModeContext } from '../context/ThemeContext'
+import { ColorModeContext } from 'context/ThemeContext'
 import { useNavigate } from 'react-router-dom'
-import pokeInfo from '../assets/title.png'
+import pokeInfo from 'assets/title.png'
 
 export const Header = () => {
   const navigate = useNavigate()
