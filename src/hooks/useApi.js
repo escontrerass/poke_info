@@ -88,3 +88,38 @@ export function useGetSelectedData(EP) {
   }, [EP])
   return { data, loading }
 }
+
+export function useGetDetailDataPagination(EP) {
+  const [pagination, setPagination] = useState([])
+  const [data, setData] = useState({})
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    const options = {
+      method: 'GET',
+      url: `${EP}`,
+    }
+    async function getData() {
+      try {
+        const response = await axios(options)
+        const promises = await response.data.results.map(async pokemon => {
+          try {
+            const { data } = await axios(pokemon.url)
+            return data
+          } catch (error) {
+            throw Error(error)
+          }
+        })
+        const results = await Promise.allSettled(promises)
+        setPagination(response.data)
+        setData(results)
+        setLoading(false)
+      } catch (error) {
+        throw Error(error)
+      }
+    }
+    getData()
+  }, [EP])
+  return { data, pagination, loading }
+}

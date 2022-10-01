@@ -1,12 +1,23 @@
-import { CircularProgress, Grid, Box } from '@mui/material'
-import React from 'react'
+import { CircularProgress, Grid, Box, Button } from '@mui/material'
+import React, { useState, useEffect } from 'react'
 import { PokeCard } from 'components/PokeCard'
 import { Search } from 'components/Search'
 import { Main } from 'containers/Main'
-import { useGetDetailData } from 'hooks/useApi'
+import { useGetDetailDataPagination } from 'hooks/useApi'
+import { lastIdData } from 'utils/lastIdData'
 
 export const Home = () => {
-  const { data, loading } = useGetDetailData('pokemon/', 0, 20)
+  const [url, setUrl] = useState(process.env.REACT_APP_POKE_API_POKEMON)
+  const [lastId, setLastId] = useState(false)
+  const { data, pagination, loading } = useGetDetailDataPagination(url)
+
+  const handleClic = e => {
+    setUrl(e)
+  }
+
+  useEffect(() => {
+    pagination.results.length > 0 && setLastId(lastIdData(pagination?.results))
+  }, [pagination])
 
   return (
     <Main>
@@ -26,12 +37,27 @@ export const Home = () => {
             sx={{ justifyContent: 'center', alignItems: 'center' }}
           >
             {data.length > 0 &&
-              data.map(({ value }) => (
-                <Grid item xs={11} sm={5} md={3.6} lg={2.5} key={value.id}>
-                  <PokeCard {...value} />
-                </Grid>
-              ))}
+              data.map(
+                ({ value }) =>
+                  value.id <= 251 && (
+                    <Grid item xs={11} sm={5} md={3.6} lg={2.5} key={value.id}>
+                      <PokeCard {...value} />
+                    </Grid>
+                  )
+              )}
           </Grid>
+          <Box display='flex' justifyContent='center' gap={5}>
+            {pagination.previous && (
+              <Button color='primary' variant='contained' size='large' onClick={() => handleClic(pagination.previous)}>
+                Back
+              </Button>
+            )}
+            {!lastId && (
+              <Button color='primary' variant='contained' size='large' onClick={() => handleClic(pagination.next)}>
+                Next
+              </Button>
+            )}
+          </Box>
         </>
       )}
     </Main>
