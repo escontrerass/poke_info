@@ -35,7 +35,7 @@ export const Home = () => {
             sx={{ justifyContent: 'center', alignItems: 'center' }}
           >
             {data.length > 0 &&
-              data.map(
+              data?.map(
                 ({ value }) =>
                   value.id <= 251 && (
                     <Grid item xs={11} sm={5} md={3.6} lg={2.5} key={value.id}>
@@ -44,7 +44,7 @@ export const Home = () => {
                   )
               )}
           </Grid>
-          <Pagination Pagination={pagination} lastId={lastId} setUrl={setUrl} />
+          <Pagination pagination={pagination} lastId={lastId} setUrl={setUrl} />
         </>
       )}
     </Main>
