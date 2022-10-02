@@ -11,7 +11,7 @@ export const PokeCard = props => {
     <>
       {id && (
         <Card>
-          <CardContent sx={{ backgroundColor: background[0].backgroundColor.medium, position: 'relative' }}>
+          <CardContent position='relative' sx={{ backgroundColor: background[0].backgroundColor.medium }}>
             <Box borderRadius='100%' boxShadow={4} p={1} sx={{ backgroundColor: '#fff', position: 'absolute' }}>
               <Typography color={background[0].backgroundColor.medium} variant='h5'>
                 #{id}
@@ -26,7 +26,6 @@ export const PokeCard = props => {
               >
                 <CardMedia
                   component='img'
-                  height='140'
                   image={sprites.other['official-artwork'].front_default}
                   alt={`Pokemon N°${id} - ${name}`}
                 />

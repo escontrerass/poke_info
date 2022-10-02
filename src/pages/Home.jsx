@@ -1,22 +1,19 @@
-import { CircularProgress, Grid, Box, Button } from '@mui/material'
 import React, { useState, useEffect } from 'react'
+import { CircularProgress, Grid, Box } from '@mui/material'
+import { useGetDetailDataPagination } from 'hooks/useApi'
+import { lastIdData } from 'utils/lastIdData'
 import { PokeCard } from 'components/PokeCard'
 import { Search } from 'components/Search'
 import { Main } from 'containers/Main'
-import { useGetDetailDataPagination } from 'hooks/useApi'
-import { lastIdData } from 'utils/lastIdData'
+import { Pagination } from 'components/Pagination'
 
 export const Home = () => {
   const [url, setUrl] = useState(process.env.REACT_APP_POKE_API_POKEMON)
   const [lastId, setLastId] = useState(false)
   const { data, pagination, loading } = useGetDetailDataPagination(url)
 
-  const handleClic = e => {
-    setUrl(e)
-  }
-
   useEffect(() => {
-    pagination.results.length > 0 && setLastId(lastIdData(pagination?.results))
+    pagination?.results && setLastId(lastIdData(pagination?.results))
   }, [pagination])
 
   return (
@@ -28,6 +25,7 @@ export const Home = () => {
       ) : (
         <>
           <Search />
+          <Pagination pagination={pagination} lastId={lastId} setUrl={setUrl} />
           <Grid
             container
             py='32px'
@@ -46,18 +44,7 @@ export const Home = () => {
                   )
               )}
           </Grid>
-          <Box display='flex' justifyContent='center' gap={5}>
-            {pagination.previous && (
-              <Button color='primary' variant='contained' size='large' onClick={() => handleClic(pagination.previous)}>
-                Atrás
-              </Button>
-            )}
-            {!lastId && (
-              <Button color='primary' variant='contained' size='large' onClick={() => handleClic(pagination.next)}>
-                Siguiente
-              </Button>
-            )}
-          </Box>
+          <Pagination Pagination={pagination} lastId={lastId} setUrl={setUrl} />
         </>
       )}
     </Main>

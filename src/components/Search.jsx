@@ -8,7 +8,7 @@ export const Search = () => {
   const navigate = useNavigate()
 
   return (
-    <Stack sx={{ width: 300, margin: 'auto' }}>
+    <Stack sx={{ width: 300, margin: 'auto', marginBottom: '20px' }}>
       <Autocomplete
         id='pokemon_name'
         getOptionLabel={data => data.name}
